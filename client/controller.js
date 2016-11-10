@@ -2,6 +2,17 @@ var app = angular.module('timeStamper', []);
 
 app.controller('winston', function ($scope) {
 
+  if (localStorage.currentTimeSheet) {
+    $scope.currentTimeSheet = JSON.parse(localStorage.currentTimeSheet);
+  } else {
+    $scope.currentTimeSheet = {
+      stamps: [],
+      startTime: Date.now(),
+    };
+  }
+
+  $scope.textTag = '';
+
   $scope.convertTime = function (time) {
 
     var seconds = Math.ceil(time / 1000);
@@ -31,16 +42,16 @@ app.controller('winston', function ($scope) {
 
   };
 
-  if (localStorage.currentTimeSheet) {
-    $scope.currentTimeSheet = JSON.parse(localStorage.currentTimeSheet);
-  } else {
-    $scope.currentTimeSheet = {
-      stamps: [],
-      startTime: Date.now(),
-    };
-  }
+  $scope.currentTime = $scope.convertTime(Date.now() - $scope.currentTimeSheet.startTime);
 
-  $scope.textTag = '';
+  $scope.updateTime = function () {
+
+    $scope.currentTime = $scope.convertTime(Date.now() - $scope.currentTimeSheet.startTime);
+    $scope.$apply();
+
+  };
+
+  setInterval($scope.updateTime.bind(this), 1000);
 
   $scope.startTimer = function () {
 
@@ -65,18 +76,6 @@ app.controller('winston', function ($scope) {
 
   };
 
-  $scope.updateTime = function () {
-
-    if ($scope.textTag) {
-
-      $scope.submittedTime = $scope.textTag;
-
-      $scope.textTag = '';
-
-    }
-
-  };
-
   $scope.resetTimeSheet = function () {
 
     $scope.currentTimeSheet = $scope.currentTimeSheet = {
@@ -85,6 +84,8 @@ app.controller('winston', function ($scope) {
     };
 
     localStorage.currentTimeSheet = JSON.stringify($scope.currentTimeSheet);
+
+    $scope.currentTime = '00:00:00';
 
   };
 
