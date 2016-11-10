@@ -9,6 +9,8 @@ app.controller('winston', function ($scope) {
       stamps: [],
       startTime: Date.now(),
     };
+
+    localStorage.currentTimeSheet = JSON.stringify($scope.currentTimeSheet);
   }
 
   $scope.textTag = '';
