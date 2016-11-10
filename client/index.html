@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <title>Time Stamper</title>
+</head>
+<body>
+  <div ng-app='timeStamper' ng-controller='winston'>
+        
+      <form ng-submit="addTimeStamp()">
+
+        <input type="text" ng-model="textTag"></input>
+
+      </form>
+      <button ng-click="resetTimeSheet()">New TimeSheet</button>
+
+      <ul style="list-style: none;">
+        <li ng-repeat='stamp in currentTimeSheet.stamps track by $index'>
+          {{ stamp.time }} - {{ stamp.text }}
+        </li>
+      </ul>
+
+  </div>
+</body>
+<script type="text/javascript" src="./controller.js"></script>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "time-stamper",
+  "version": "1.0.0",
+  "description": "A web app for saving time-stamped notes",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Zolayvar",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7"
+  }
+}
