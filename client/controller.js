@@ -83,7 +83,10 @@ app.controller('winston', function ($scope) {
     var confirmation = true;    
 
     if ($scope.currentTimeSheet.stamps.length) {
-      confirmation = confirm('Are you sure you want to reset your timesheet? All existing timestamps will be lost.')
+      confirmation = confirm(
+        'Are you sure you want to reset your timesheet? \
+        All existing timestamps will be lost.' 
+      );
     }
 
     if (confirmation) {
