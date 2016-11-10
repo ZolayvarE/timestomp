@@ -77,8 +77,8 @@ app.controller('winston', function ($scope) {
   };
 
   $scope.resetTimeSheet = function () {
-    if (confirm('Are you sure you want to reset your timesheet? All existing timestamps will be lost.')) {
-      
+    if ($scope.currentTimeSheet.stamps.length && confirm('Are you sure you want to reset your timesheet? All existing timestamps will be lost.')) {
+
       $scope.currentTimeSheet = $scope.currentTimeSheet = {
         stamps: [],
         startTime: Date.now(),
