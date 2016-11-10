@@ -14,10 +14,14 @@
       </form>
 
 
-      <h3>Current Time: {{ currentTime }}</h3>
+      <h3>Current Time: {{ currentTime }}  
 
-      <button ng-click="resetTimeSheet()">Reset</button>
+        <button ng-click="resetTimeSheet()">Reset</button>
+
+      </h3>
       
+
+
       <ul style="list-style: none;">
         <li ng-repeat='stamp in currentTimeSheet.stamps track by $index'>
           {{ stamp.time }} - {{ stamp.text }}
