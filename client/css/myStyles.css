@@ -4,6 +4,10 @@
   width: 60%;
 }
 
+.timestamp {
+  word-wrap: break-word;
+}
+
 .controls {
   position: fixed;
   margin: 4px;
@@ -12,5 +16,14 @@
 }
 
 .stampInput {
-  margin: 6px;
+  position: relative;
+  width: 97%;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.controlsButton {
+  margin-bottom: 6px;
+  position: relative;
+  width: 97%;
 }
