@@ -22,27 +22,31 @@ app.controller('winston', function ($scope) {
 
   $scope.startTimer = function () {
 
+    $scope.currentSheet.status = 'running';
     $scope.currentSheet.startTime = Date.now();
 
     setTimeout(function () {
       $scope.currentSheet.updateTime.call($scope.currentSheet);
+      $scope.apply();
     }, 0);
     
     var tick = setInterval(function () {
       $scope.currentSheet.updateTime.call($scope.currentSheet);
+      $scope.apply();
     }, 1000);
 
   };
 
   $scope.stopTimer = function () {
 
+    $scope.currentSheet.status = 'complete';
     clearInterval(tick);
 
   };
 
   $scope.addTimeStamp = function () {
 
-    if ($scope.textTag) {
+    if ($scope.textTag && $scope.curentSheet.status === 'running') {
 
       $scope.currentSheet.stamps.push({
         time: Date.now() - $scope.currentSheet.startTime,
@@ -68,9 +72,7 @@ app.controller('winston', function ($scope) {
     }
 
     if (confirmation) {
-      $scope.currentSheet.stamps = [];
-      $scope.currentSheet.startTime = 0;
-      $scope.currentTime = 0;
+      $scope.currentSheet = new Timesheet($scope.currentSheet.title);
       $scope.currentSheet.save();
     }
   };
