@@ -7,6 +7,8 @@
 
   <script type="text/javascript" src='./scripts/timeConversions.js'></script>
 
+  <script type="text/javascript" src='./scripts/timesheetConstructor.js'></script>
+
   <script type="text/javascript" src="./controller.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
@@ -43,7 +45,7 @@
       <center>
         <form ng-submit="addTimeStamp()" class='stampInput'>
           <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">{{ currentTime }}</span>
+            <span class="input-group-addon" id="basic-addon1">{{ convert(currentSheet.currentTime) }}</span>
             <input type="text" ng-model='textTag' class="form-control" placeholder="Your text here..." aria-describedby="basic-addon1">
           </div>
         </form>
@@ -60,10 +62,10 @@
 
     <div class="panel panel-default pull-right timesheet">
       <div class="panel-heading">
-        <h3 class='panel-title'>{{ currentTimeSheet.title }}</h3>
+        <h3 class='panel-title'>{{ currentSheet.title }}</h3>
       </div>
       <ul class='list-group'>
-        <li class='list-group-item timestamp' ng-repeat='stamp in currentTimeSheet.stamps track by $index'>
+        <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
           {{ convert(stamp.time) }} - {{ stamp.text }}
         </li>
       </ul>

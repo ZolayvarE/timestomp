@@ -4,34 +4,39 @@ app.controller('winston', function ($scope) {
 
   $scope.convert = convertToSeconds;
 
-  if (localStorage.currentTimeSheet) {
-    $scope.currentTimeSheet = JSON.parse(localStorage.currentTimeSheet);
+  if (localStorage.currentSheet) {
+    $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));
   } else {
-    $scope.currentTimeSheet = {
-      title: prompt('What would you like to call this timesheet?') || 'Title',
-      stamps: [],
-      startTime: Date.now(),
-    };
-
-    localStorage.currentTimeSheet = JSON.stringify($scope.currentTimeSheet);
+    $scope.currentSheet = new Timesheet(prompt('What would you like your timesheet to be called?'));
   }
+
+  $scope.currentSheet.save();
 
   $scope.textTag = '';
 
-  $scope.currentTime = convertToSeconds(Date.now() - $scope.currentTimeSheet.startTime);
-
   $scope.updateTime = function () {
-
-    $scope.currentTime = convertToSeconds(Date.now() - $scope.currentTimeSheet.startTime);
+    $scope.currentSheet.updateTime();
     $scope.$apply();
-
   };
 
-  setInterval($scope.updateTime, 1000);
 
   $scope.startTimer = function () {
 
-    $scope.currentTimeSheet.startTime = Date.now();
+    $scope.currentSheet.startTime = Date.now();
+
+    setTimeout(function () {
+      $scope.currentSheet.updateTime.call($scope.currentSheet);
+    }, 0);
+    
+    var tick = setInterval(function () {
+      $scope.currentSheet.updateTime.call($scope.currentSheet);
+    }, 1000);
+
+  };
+
+  $scope.stopTimer = function () {
+
+    clearInterval(tick);
 
   };
 
@@ -39,14 +44,14 @@ app.controller('winston', function ($scope) {
 
     if ($scope.textTag) {
 
-      $scope.currentTimeSheet.stamps.push({
-        time: Date.now() - $scope.currentTimeSheet.startTime,
+      $scope.currentSheet.stamps.push({
+        time: Date.now() - $scope.currentSheet.startTime,
         text: $scope.textTag,
       });
 
       $scope.textTag = '';
 
-      localStorage.currentTimeSheet = JSON.stringify($scope.currentTimeSheet);
+      $scope.currentSheet.save();
 
     }
 
@@ -56,26 +61,17 @@ app.controller('winston', function ($scope) {
     
     var confirmation = true;    
 
-    if ($scope.currentTimeSheet.stamps.length) {
+    if ($scope.currentSheet.stamps.length) {
       confirmation = confirm(
-        [
-        
-          'Are you sure you want to reset your timesheet?',
-          'All existing timestamps will be lost.'
-
-        ].join(' ')
+        'Are you sure you want to reset your timesheet? All existing timestamps will be lost.'
       );
     }
 
     if (confirmation) {
-
-      $scope.currentTimeSheet.stamps = [];
-      $scope.currentTimeSheet.startTime = Date.now();
-
-      localStorage.currentTimeSheet = JSON.stringify($scope.currentTimeSheet);
-
-      $scope.currentTime = '00:00:00';
-
+      $scope.currentSheet.stamps = [];
+      $scope.currentSheet.startTime = 0;
+      $scope.currentTime = 0;
+      $scope.currentSheet.save();
     }
   };
 
