@@ -16,11 +16,13 @@ app.controller('winston', function ($scope) {
     $scope.currentSheet.status = 'running';
     setTimeout($scope.updateTime, 0);
     $scope.tick = setInterval($scope.updateTime, 1000);
+    $scope.currentSheet.save();
   };
 
   $scope.stopTimer = function () {
     $scope.currentSheet.status = 'complete';
     clearInterval($scope.tick);
+    $scope.currentSheet.save();
   };
 
   $scope.addTimeStamp = function () {
