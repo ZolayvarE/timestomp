@@ -1,0 +1,16 @@
+.timesheet {
+  margin: 4px;
+  margin-top: 0px;
+  width: 60%;
+}
+
+.controls {
+  position: fixed;
+  margin: 4px;
+  margin-top: 0px;
+  width: 38%;
+}
+
+.stampInput {
+  margin: 6px;
+}
