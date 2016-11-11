@@ -2,63 +2,37 @@ var app = angular.module('timeStamper', []);
 
 app.controller('winston', function ($scope) {
 
-  $scope.convert = convertToSeconds;
-
-  if (localStorage.currentSheet) {
-    $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));
-  } else {
-    $scope.currentSheet = new Timesheet(prompt('What would you like your timesheet to be called?'));
-  }
-
-  $scope.currentSheet.save();
-
-  $scope.textTag = '';
-
   $scope.updateTime = function () {
-    $scope.currentSheet.updateTime();
+    $scope.currentSheet.updateTime.call($scope.currentSheet);
     $scope.$apply();
   };
 
 
   $scope.startTimer = function () {
+    if (!$scope.currentSheet.startTime) {
+      $scope.currentSheet.startTime = Date.now();
+    }
 
     $scope.currentSheet.status = 'running';
-    $scope.currentSheet.startTime = Date.now();
-
-    setTimeout(function () {
-      $scope.currentSheet.updateTime.call($scope.currentSheet);
-      $scope.apply();
-    }, 0);
-    
-    var tick = setInterval(function () {
-      $scope.currentSheet.updateTime.call($scope.currentSheet);
-      $scope.apply();
-    }, 1000);
-
+    setTimeout($scope.updateTime, 0);
+    $scope.tick = setInterval($scope.updateTime, 1000);
   };
 
   $scope.stopTimer = function () {
-
     $scope.currentSheet.status = 'complete';
-    clearInterval(tick);
-
+    clearInterval($scope.tick);
   };
 
   $scope.addTimeStamp = function () {
-
-    if ($scope.textTag && $scope.curentSheet.status === 'running') {
-
+    if ($scope.textTag && $scope.currentSheet.status === 'running') {
       $scope.currentSheet.stamps.push({
         time: Date.now() - $scope.currentSheet.startTime,
         text: $scope.textTag,
       });
 
       $scope.textTag = '';
-
       $scope.currentSheet.save();
-
     }
-
   };
 
   $scope.resetTimeSheet = function () {
@@ -76,6 +50,42 @@ app.controller('winston', function ($scope) {
       $scope.currentSheet.save();
     }
   };
+
+  $scope.interpretButtonPress = function () {
+    if ($scope.currentSheet.status === 'new') {
+      $scope.startTimer();
+    } else if ($scope.currentSheet.status === 'running') {
+      $scope.stopTimer();
+    } else if ($scope.currentSheet.status === 'complete') {
+      $scope.resetTimeSheet();
+    }
+  };
+
+  $scope.getButtonText = function () {
+    if ($scope.currentSheet.status === 'new') {
+      return 'Start';
+    } else if ($scope.currentSheet.status === 'running') {
+      return 'Stop';
+    } else if ($scope.currentSheet.status === 'complete') {
+      return 'Reset';
+    }
+  };
+
+
+  $scope.convert = convertToSeconds;
+
+  if (localStorage.currentSheet) {
+    $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));    
+    if ($scope.currentSheet.status === 'running') {
+      $scope.startTimer();
+    }
+  } else {
+    $scope.currentSheet = new Timesheet(prompt('What would you like your timesheet to be called?'));
+  }
+
+  $scope.currentSheet.save();
+
+  $scope.textTag = '';
 
 });
 
