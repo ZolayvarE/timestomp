@@ -80,7 +80,7 @@ app.controller('winston', function ($scope) {
       $scope.startTimer();
     }
   } else {
-    $scope.currentSheet = new Timesheet(prompt('What would you like your timesheet to be called?'));
+    $scope.currentSheet = new Timesheet('Timesheet');
   }
 
   $scope.currentSheet.save();

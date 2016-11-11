@@ -1,7 +1,7 @@
 var Timesheet = function (input) {
   if (typeof input === typeof 'hello') {
     this.status = 'new';
-    this.title = 'Timesheet';
+    this.title = input || 'New Timesheet';
     this.stamps = [];
     this.startTime = 0;
     this.currentTime = 0;
