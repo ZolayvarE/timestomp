@@ -5,6 +5,8 @@
 
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
+  <script type="text/javascript" src='./scripts/copyScript.js'></script>
+
   <script type="text/javascript" src='./scripts/timeConversions.js'></script>
 
   <script type="text/javascript" src='./scripts/timesheetConstructor.js'></script>
@@ -41,7 +43,6 @@
         </h3>
       </div>
 
-        <!-- <button class='btn btn-default' ng-click="resetTimeSheet()">Reset</button> -->
       <center>
         <form ng-submit="addTimeStamp()" class='stampInput'>
           <div class="input-group">
@@ -63,6 +64,7 @@
     <div class="panel panel-default pull-right timesheet">
       <div class="panel-heading">
         <h3 class='panel-title'>{{ currentSheet.title }}</h3>
+        <button class='btn btn-default' ng-click='copyButton()'>Copy</button>
       </div>
       <ul class='list-group'>
         <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
