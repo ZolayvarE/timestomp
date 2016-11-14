@@ -42,6 +42,7 @@ app.controller('winston', function ($scope) {
   $scope.scrollToBottomOfTimesheet = function () {
     setTimeout(function () {
       var sheet = document.querySelector('.stampCollection');
+      sheet.style = 'max-height: ' + (window.innerHeight - 117) + 'px; overflow-y: auto;'
       sheet.scrollTop = sheet.scrollHeight;
     }, 0);
   };
@@ -108,8 +109,12 @@ app.controller('winston', function ($scope) {
 
   $scope.textTag = '';
 
-  $scope.scrollToBottomOfTimesheet();
+  $(window).resize(function () {
+    $scope.scrollToBottomOfTimesheet();
+  });
 
+  $scope.scrollToBottomOfTimesheet();
+  
 });
 
 
