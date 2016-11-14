@@ -34,7 +34,16 @@ app.controller('winston', function ($scope) {
 
       $scope.textTag = '';
       $scope.currentSheet.save();
+
+      $scope.scrollToBottomOfTimesheet();
     }
+  };
+
+  $scope.scrollToBottomOfTimesheet = function () {
+    setTimeout(function () {
+      var sheet = document.querySelector('.stampCollection');
+      sheet.scrollTop = sheet.scrollHeight;
+    }, 0);
   };
 
   $scope.resetTimeSheet = function () {
@@ -98,6 +107,8 @@ app.controller('winston', function ($scope) {
   $scope.currentSheet.save();
 
   $scope.textTag = '';
+
+  $scope.scrollToBottomOfTimesheet();
 
 });
 

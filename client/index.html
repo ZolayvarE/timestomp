@@ -73,11 +73,13 @@
         <div class='clearfix'></div>
         
       </div>
-      <ul class='list-group'>
+
+      <ul class='list-group stampCollection'>
         <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
           {{ convert(stamp.time) }} - {{ stamp.text }}
         </li>
       </ul>
+
     </div>
 
   </div>
