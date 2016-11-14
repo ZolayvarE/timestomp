@@ -27,3 +27,19 @@
   position: relative;
   width: 97%;
 }
+
+.panel-title {
+  margin: 10px 15px;
+}
+
+.panel-heading {
+  padding: 0px;
+}
+
+.copy-btn {
+  margin: 3px 7px;
+
+  padding: 4px 11px;
+}
+
+

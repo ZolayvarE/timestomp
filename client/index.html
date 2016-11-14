@@ -38,9 +38,10 @@
     <div class='panel panel-default controls'>
 
       <div class='panel-heading'>
-        <h3 class='panel-title'>
+        <h2 class='panel-title pull-left'>
           Controls
-        </h3>
+        </h2>
+        <div class='clearfix'></div>
       </div>
 
       <center>
@@ -63,8 +64,14 @@
 
     <div class="panel panel-default pull-right timesheet">
       <div class="panel-heading">
-        <h3 class='panel-title'>{{ currentSheet.title }}</h3>
-        <button class='btn btn-default' ng-click='copyButton()'>Copy</button>
+        <h2 class='panel-title pull-left'>
+          {{ currentSheet.title }}
+        </h2>
+        <a title="Copy timestamps" class='btn btn-default pull-right copy-btn' ng-click='copyButton()'>
+          Copy
+        </a>
+        <div class='clearfix'></div>
+        
       </div>
       <ul class='list-group'>
         <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>

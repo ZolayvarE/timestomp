@@ -74,6 +74,7 @@ app.controller('winston', function ($scope) {
   };
 
   $scope.copyButton = function () {
+
     var textToCopy = $scope.currentSheet.stamps
       .map(function (item) {
         return convert(item.time) + ' - ' + item.text;
@@ -99,6 +100,8 @@ app.controller('winston', function ($scope) {
   $scope.textTag = '';
 
 });
+
+
 
 
 
