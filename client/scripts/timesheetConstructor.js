@@ -5,6 +5,7 @@ var Timesheet = function (input) {
     this.stamps = [];
     this.startTime = 0;
     this.currentTime = 0;
+    this.createdAt = new Date;
   } else if (typeof input === typeof {}) {
     for (var key in input) {
       this[key] = input[key];

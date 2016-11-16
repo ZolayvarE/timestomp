@@ -7,7 +7,6 @@ app.controller('winston', function ($scope) {
     $scope.$apply();
   };
 
-
   $scope.startTimer = function () {
     if (!$scope.currentSheet.startTime) {
       $scope.currentSheet.startTime = Date.now();
@@ -15,7 +14,7 @@ app.controller('winston', function ($scope) {
 
     $scope.currentSheet.status = 'running';
     setTimeout($scope.updateTime, 0);
-    $scope.tick = setInterval($scope.updateTime, 1000);
+    $scope.tick = setInterval($scope.updateTime, 200);
     $scope.currentSheet.save();
   };
 
@@ -31,10 +30,8 @@ app.controller('winston', function ($scope) {
         time: Date.now() - $scope.currentSheet.startTime,
         text: $scope.textTag,
       });
-
       $scope.textTag = '';
       $scope.currentSheet.save();
-
       $scope.scrollToBottomOfTimesheet();
     }
   };
@@ -116,6 +113,29 @@ app.controller('winston', function ($scope) {
   $scope.scrollToBottomOfTimesheet();
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
