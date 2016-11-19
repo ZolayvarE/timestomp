@@ -3,13 +3,13 @@
 <head>
   <title>Time Stomp</title>
 
-  <link rel="stylesheet" href="./lib/bootstrap-theme.min.css">
+  <script text='text/javascript' src="./lib/jquery.min.js"></script> 
 
   <script text=' text/javascript' src="./lib/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="./lib/bootstrap.min.css">
 
-  <script text='text/javascript' src="./lib/jquery.min.js"></script> 
+  <link rel="stylesheet" href="./lib/bootstrap-theme.min.css">
 
   <script type="text/javascript" src="./lib/angular.js"></script>
 
@@ -32,7 +32,7 @@
 </head>
 <body>
   <div ng-app='timeStomp'>
-
+<!-- 
     <nav class='navbar navbar-default'>
       <div class='container-fluid'>
         <div class="navbar-header">
@@ -54,10 +54,34 @@
 
       </div>
     </nav> 
+ -->
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TimeStomp</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href='#' ng-click="">New Timesheet</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Home</a></li>
+            <li><a href='#/timesheets'>Timesheets</a></li>
+            <li><a href="#/options">Options</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <div ui-view></div>
-
-    
 
     </div>
 

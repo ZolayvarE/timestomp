@@ -37,7 +37,7 @@ app.controller('Home', function ($scope) {
   $scope.scrollToBottomOfTimesheet = function () {
     setTimeout(function () {
       var sheet = document.querySelector('.stampCollection');
-      sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 15) + 'px; overflow-y: auto;'
+      sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 20) + 'px; overflow-y: auto; margin-bottom: 0px';
       sheet.scrollTop = sheet.scrollHeight;
 
       console.log(sheet.style);

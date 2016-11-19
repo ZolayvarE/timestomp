@@ -1,46 +1,50 @@
 <div ng-controller='Home'>
   
-  <div class='row'>  
-    <div class='panel panel-default col-xs-12 col-sm-6'>
+  <div class='row'>
+    <div class='col-xs-12 col-sm-6'>
+      <div class='panel panel-default'>
 
-      <div class='panel-heading'>
-        <h2 class='panel-title pull-left'>
-          Controls
-        </h2>
-        <div class='clearfix'></div>
+        <div class='panel-heading'>
+          <h2 class='panel-title pull-left'>
+            Controls
+          </h2>
+          <div class='clearfix'></div>
+        </div>
+
+        <center>
+          <form ng-submit="addTimeStamp()" class='stampInput'>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">{{ convert(currentSheet.currentTime) }}</span>
+              <input type="text" ng-model='textTag' class="form-control" placeholder="Your text here..." aria-describedby="basic-addon1">
+            </div>
+          </form>
+        </center>
+
+        <center>
+          <button type="button" ng-click='interpretButtonPress()' class="pull-center controlsButton btn btn-default">{{ getButtonText() }}</button>
+        </center>
       </div>
-
-      <center>
-        <form ng-submit="addTimeStamp()" class='stampInput'>
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">{{ convert(currentSheet.currentTime) }}</span>
-            <input type="text" ng-model='textTag' class="form-control" placeholder="Your text here..." aria-describedby="basic-addon1">
-          </div>
-        </form>
-      </center>
-
-      <center>
-        <button type="button" ng-click='interpretButtonPress()' class="pull-center controlsButton btn btn-default">{{ getButtonText() }}</button>
-      </center>
     </div>
 
-    <div class="panel panel-default col-xs-12 col-sm-6">
-      <div class="panel-heading">
-        <h2 class='panel-title pull-left'>
-          {{ currentSheet.title }}
-        </h2>
-        <a title="Copy timestamps" class='btn btn-default pull-right copy-btn' ng-click='copyButton()'>
-          Copy
-        </a>
-        <div class='clearfix'></div>
-        
-      </div>
+    <div class='col-xs-12 col-sm-6'>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class='panel-title pull-left'>
+            {{ currentSheet.title }}
+          </h2>
+          <a title="Copy timestamps" class='btn btn-default pull-right copy-btn' ng-click='copyButton()'>
+            Copy
+          </a>
+          <div class='clearfix'></div>
+          
+        </div>
 
-      <ul class='list-group stampCollection'>
-        <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
-          {{ convert(stamp.time) }} - {{ stamp.text }}
-        </li>
-      </ul>
+        <ul class='list-group stampCollection'>
+          <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
+            {{ convert(stamp.time) }} - {{ stamp.text }}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
