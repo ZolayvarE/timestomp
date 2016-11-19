@@ -4,6 +4,8 @@ html {
 
 body {
   height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 .timesheet {
@@ -47,12 +49,17 @@ body {
 
 .panel-heading {
   padding: 0px;
+  margin-right: 0px;
 }
 
 .copy-btn {
   margin: 3px 7px;
 
   padding: 4px 11px;
+}
+
+.manual-adjust {
+  padding-right: 0px;
 }
 
 
