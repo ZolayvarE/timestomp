@@ -3,9 +3,17 @@
 <head>
   <title>Time Stomp</title>
 
+  <link rel="stylesheet" href="./lib/bootstrap-theme.min.css">
+
+  <script text=' text/javascript' src="./lib/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="./lib/bootstrap.min.css">
+
   <script text='text/javascript' src="./lib/jquery.min.js"></script> 
 
   <script type="text/javascript" src="./lib/angular.js"></script>
+
+  <script type="text/javascript" src='./lib/ui-router.js'></script>
 
   <script type="text/javascript" src='./scripts/copyScript.js'></script>
 
@@ -13,77 +21,43 @@
 
   <script type="text/javascript" src='./scripts/timesheetConstructor.js'></script>
 
-  <script type="text/javascript" src="./controller.js"></script>
+  <script type="text/javascript" src="./index.js"></script>
 
-  <script text=' text/javascript' src="./lib/bootstrap.min.js"></script>
+  <script type="text/javascript" src='./controllers/homeController.js'></script>
 
-  <link rel="stylesheet" href="./lib/bootstrap.min.css">
-
-  <link rel="stylesheet" href="./lib/bootstrap-theme.min.css">
+  <script type="text/javascript" src='./controllers/timesheetsController.js'></script>
 
   <link rel="stylesheet" type="text/css" href="./css/myStyles.css">
 
 </head>
 <body>
-  <div ng-app='timeStamper' ng-controller='winston'>
+  <div ng-app='timeStomp'>
 
     <nav class='navbar navbar-default'>
       <div class='container-fluid'>
         <div class="navbar-header">
           <a href='#' class='navbar-brand'>Time Stomp</a>
         </div>
-        <ul class='nav navbar-nav navbar-right'>
-          <li><a href="#">Home</a></li>
-          <li><a href='#/timesheets'>Timesheets</a></li>
-          <li><a href="#/options">Options</a></li>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href='#' ng-click="">New Timesheet</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Home</a></li>
+              <li><a href='#/timesheets'>Timesheets</a></li>
+              <li><a href="#/options">Options</a></li>
+            </ul>
+          </li>
         </ul>
+
       </div>
     </nav> 
 
-    <div class='panel panel-default controls'>
+    <div ui-view></div>
 
-      <div class='panel-heading'>
-        <h2 class='panel-title pull-left'>
-          Controls
-        </h2>
-        <div class='clearfix'></div>
-      </div>
-
-      <center>
-        <form ng-submit="addTimeStamp()" class='stampInput'>
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">{{ convert(currentSheet.currentTime) }}</span>
-            <input type="text" ng-model='textTag' class="form-control" placeholder="Your text here..." aria-describedby="basic-addon1">
-          </div>
-        </form>
-      </center>
-
-      <center>
-        <button type="button" ng-click='interpretButtonPress()' class="pull-center controlsButton btn btn-default">{{ getButtonText() }}</button>
-      </center>
-
-    </div>
-
-
-
-
-    <div class="panel panel-default pull-right timesheet">
-      <div class="panel-heading">
-        <h2 class='panel-title pull-left'>
-          {{ currentSheet.title }}
-        </h2>
-        <a title="Copy timestamps" class='btn btn-default pull-right copy-btn' ng-click='copyButton()'>
-          Copy
-        </a>
-        <div class='clearfix'></div>
-        
-      </div>
-
-      <ul class='list-group stampCollection'>
-        <li class='list-group-item timestamp' ng-repeat='stamp in currentSheet.stamps track by $index'>
-          {{ convert(stamp.time) }} - {{ stamp.text }}
-        </li>
-      </ul>
+    
 
     </div>
 

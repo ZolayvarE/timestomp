@@ -1,0 +1,7 @@
+<div ng-controller='Timesheets'>
+  <ul>
+    <li ng-repeat='sheet in allSheets' ng-click="openSheet(sheet.title)">
+      {{ sheet.title + ' (' + sheet.createdAt.split('T')[0] + ')'  }}
+    </li>
+  </ul>
+</div>

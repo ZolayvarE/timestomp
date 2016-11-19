@@ -1,6 +1,4 @@
-var app = angular.module('timeStamper', []);
-
-app.controller('winston', function ($scope) {
+app.controller('Home', function ($scope) {
 
   $scope.updateTime = function () {
     $scope.currentSheet.updateTime.call($scope.currentSheet);
@@ -39,8 +37,10 @@ app.controller('winston', function ($scope) {
   $scope.scrollToBottomOfTimesheet = function () {
     setTimeout(function () {
       var sheet = document.querySelector('.stampCollection');
-      sheet.style = 'max-height: ' + (window.innerHeight - 116) + 'px; overflow-y: auto;'
+      sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 15) + 'px; overflow-y: auto;'
       sheet.scrollTop = sheet.scrollHeight;
+
+      console.log(sheet.style);
     }, 0);
   };
 
