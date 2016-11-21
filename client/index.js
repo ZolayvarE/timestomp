@@ -23,7 +23,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: '/views/newTimesheet.html'
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/timesheets');
 });
 
 

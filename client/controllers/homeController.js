@@ -12,7 +12,7 @@ app.controller('Home', function ($scope, $state) {
 
     $scope.currentSheet.status = 'running';
     setTimeout($scope.updateTime, 0);
-    $scope.tick = setInterval($scope.updateTime, 200);
+    $scope.tick = setInterval($scope.updateTime, 1000);
     $scope.currentSheet.save();
   };
 
@@ -91,7 +91,9 @@ app.controller('Home', function ($scope, $state) {
     copyToClipboard(textToCopy);
   };
 
-  $scope.convert = convertToSeconds;
+  $scope.convertToSeconds = convertToSeconds;
+
+  $scope.convert = convertToFrames;
 
   if (localStorage.currentSheet && localStorage.currentSheet !== 'undefined') {
     $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));    
