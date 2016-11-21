@@ -18,23 +18,33 @@ app.controller('Timesheets', function ($scope, $state) {
   };
 
   $scope.deleteSheet = function (title) {
-    delete localStorage.currentSheet;
-    delete localStorage[title];
 
-    var found = false;
+    var confirmation = true;
 
-    for (var key in localStorage) {
-      if (key !== 'currentSheet' && key !== 'version' && key !== 'length') {
-        found = true;
-        localStorage.currentSheet = localStorage['' + key];
-        break;
+    confirmation = confirm('Are you sure you want to delete timesheet ' + '"' + title + '"?' );
+
+    if (!confirmation) {
+      return;
+    } else {
+
+      delete localStorage.removeItem('currentSheet');
+      delete localStorage.removeItem(title);
+
+      var found = false;
+
+      for (var key in localStorage) {
+        if (key !== 'currentSheet' && key !== 'version' && key !== 'length' && localStorage[key] !== 'undefined') {
+          found = true;
+          localStorage.currentSheet = localStorage[key];
+          break;
+        }
       }
-    }
 
-    if (!found) {
-      $state.go('New Timesheet');
+      $scope.getSheets();
     }
   };
+
+
 
   $scope.getSheets();
 

@@ -1,5 +1,7 @@
 app.controller('NewTimesheet', function ($scope, $state) {
 
+	console.clear();
+
   $scope.inputText = '';
 
   $scope.createTimesheet = function () {

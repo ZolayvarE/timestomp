@@ -37,8 +37,10 @@ app.controller('Home', function ($scope, $state) {
   $scope.scrollToBottomOfTimesheet = function () {
     setTimeout(function () {
       var sheet = document.querySelector('.stampCollection');
-      sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 20) + 'px; overflow-y: auto; margin-bottom: 0px';
-      sheet.scrollTop = sheet.scrollHeight;
+      if (sheet) {
+        sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 20) + 'px; overflow-y: auto; margin-bottom: 0px';
+        sheet.scrollTop = sheet.scrollHeight;
+      }
     }, 0);
   };
 
@@ -91,24 +93,31 @@ app.controller('Home', function ($scope, $state) {
 
   $scope.convert = convertToSeconds;
 
-  if (localStorage.currentSheet) {
+  if (localStorage.currentSheet && localStorage.currentSheet !== 'undefined') {
     $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));    
     if ($scope.currentSheet.status === 'running') {
       $scope.startTimer();
     }
+  } 
+
+  if ($scope.currentSheet) {
+
+    $scope.currentSheet.save();
+
+    $scope.textTag = '';
+
+    $(window).resize(function () {
+      $scope.scrollToBottomOfTimesheet();
+    });
+
+    $scope.scrollToBottomOfTimesheet();
+
   } else {
-    $state.go('NewTimesheet');
+
+    $state.go('New Timesheet');
+
   }
 
-  $scope.currentSheet.save();
-
-  $scope.textTag = '';
-
-  $(window).resize(function () {
-    $scope.scrollToBottomOfTimesheet();
-  });
-
-  $scope.scrollToBottomOfTimesheet();
 
 });
 

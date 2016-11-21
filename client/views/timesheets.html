@@ -1,19 +1,39 @@
 <div ng-controller='Timesheets'>
 
-  <div class="panel panel-default">
-    <div class='panel-heading'>
-      <h2 class='panel-title pull-left'>
-        All Timesheets
-      </h2>
-      <div class='clearfix'></div>
+  <div class='row'>
+    <div class='col-xs-0 col-sm-1'></div>  
+
+    <div class='col-xs-12 col-sm-10'>
+      <div class="panel panel-default">
+        <div class='panel-heading'>
+          <h2 class='panel-title pull-left'>
+            All Timesheets
+          </h2>
+          <div class='clearfix'></div>
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="sheet in allSheets | orderBy: '-createdTime'">
+            <div class='row'>
+              <div class='col-xs-0 col-sm-0'></div>
+              <h5 ng-click='openSheet(sheet.title)' class='col-xs-8 col-sm-10'>
+                {{ sheet.title + ' (' + sheet.createdAt.split('T')[0] + ')'  }}          
+              </h5>
+              <button class='btn btn-default col-xs-2 col-sm-1' ng-click='openSheet(sheet.title)'>
+                <center>Open</center>
+              </button>
+              <button class='btn btn-default col-xs-2 col-sm-1' ng-click='deleteSheet(sheet.title)'>
+                <center>Delete</center>
+              </button>
+              <div class='col-xs-0 col-sm-0'></div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <ul class="list-group">
-      <li class="list-group-item" ng-repeat='sheet in allSheets' ng-click="openSheet(sheet.title)">
-        {{ sheet.title + ' (' + sheet.createdAt.split('T')[0] + ')'  }}
-        <button class='btn btn-default pull-right' ng-click='deleteSheet(sheet.title)'>Delete</button>
-      </li>
-    </ul>
+    <div class='col-xs-0 col-sm-1'></div>  
   </div>
+
 </div>
 
