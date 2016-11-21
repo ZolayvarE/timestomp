@@ -9,8 +9,8 @@ app.controller('Timesheets', function ($scope, $state) {
     $scope.allSheets = [];
 
     for (var key in localStorage) {
-      if (key !== 'currentSheet') {
-        $scope.allSheets.push(new Timesheet(JSON.parse(localStorage[key])))
+      if (key !== 'currentSheet' && key !== 'version') {
+        $scope.allSheets.push(new Timesheet(JSON.parse(localStorage[key])));
       }
     }
 

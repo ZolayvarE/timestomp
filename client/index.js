@@ -1,3 +1,10 @@
+var version = '0.0.1';
+
+if (localStorage.version !== version) {
+  localStorage.clear();
+  localStorage.version = version;
+}
+
 var app = angular.module('timeStomp', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -10,10 +17,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('Timesheets', {
       url: '/timesheets',
       templateUrl: '/views/timesheets.html'
+    })
+    .state('New Timesheet', {
+      url: '/newtimesheet',
+      templateUrl: '/views/newTimesheet.html'
     });
 
   $urlRouterProvider.otherwise('/');
 });
+
+
 
 
 

@@ -1,7 +1,18 @@
 <div ng-controller='Timesheets'>
-  <ul>
-    <li ng-repeat='sheet in allSheets' ng-click="openSheet(sheet.title)">
-      {{ sheet.title + ' (' + sheet.createdAt.split('T')[0] + ')'  }}
-    </li>
-  </ul>
+
+  <div class="panel panel-default">
+    <div class='panel-heading'>
+      <h2 class='panel-title pull-left'>
+        All Timesheets
+      </h2>
+      <div class='clearfix'></div>
+    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat='sheet in allSheets' ng-click="openSheet(sheet.title)">
+        {{ sheet.title + ' (' + sheet.createdAt.split('T')[0] + ')'  }}
+      </li>
+    </ul>
+  </div>
 </div>
+

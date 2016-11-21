@@ -1,4 +1,4 @@
-app.controller('Home', function ($scope) {
+app.controller('Home', function ($scope, $state) {
 
   $scope.updateTime = function () {
     $scope.currentSheet.updateTime.call($scope.currentSheet);
@@ -39,8 +39,6 @@ app.controller('Home', function ($scope) {
       var sheet = document.querySelector('.stampCollection');
       sheet.style = 'max-height: ' + (window.innerHeight - sheet.getBoundingClientRect().top - 20) + 'px; overflow-y: auto; margin-bottom: 0px';
       sheet.scrollTop = sheet.scrollHeight;
-
-      console.log(sheet.style);
     }, 0);
   };
 
@@ -99,7 +97,7 @@ app.controller('Home', function ($scope) {
       $scope.startTimer();
     }
   } else {
-    $scope.currentSheet = new Timesheet('Timesheet');
+    $state.go('NewTimesheet');
   }
 
   $scope.currentSheet.save();

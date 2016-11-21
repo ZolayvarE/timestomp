@@ -1,0 +1,30 @@
+<div ng-controller='NewTimesheet'>
+  <div class='row'>
+    <div class='col-xs-2'></div>
+
+      <h3 class='col-xs-8'>
+        <center>
+          What should your timesheet be called?
+        </center>
+      </h3>
+
+    <div class='col-xs-2'></div>
+  </div>
+
+  <div class='row'>
+    <div class='col-xs-3'></div>
+
+
+      <form ng-submit='createTimesheet()' class='col-xs-6 input-group'>
+        
+        <input ng-model="inputText" type="text" class="form-control" placeholder="Your title goes here..." aria-describedby="sizing-addon1"></input>
+        <span class="input-group-addon" id="basic-addon1" ng-click="createTimesheet()">
+          Create Timesheet
+        </span>
+
+      </form>
+
+
+    <div class='col-xs-3'></div>
+  </div>
+</div>

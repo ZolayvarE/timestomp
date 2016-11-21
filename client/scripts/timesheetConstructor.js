@@ -1,4 +1,5 @@
 var Timesheet = function (input) {
+
   if (typeof input === typeof 'hello') {
     this.status = 'new';
     this.title = input || 'New Timesheet';

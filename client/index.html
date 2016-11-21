@@ -26,38 +26,17 @@
 
   <script type="text/javascript" src="./index.js"></script>
 
+  <script type="text/javascript" src='./controllers/timesheetsController.js'></script>
+
   <script type="text/javascript" src='./controllers/homeController.js'></script>
 
-  <script type="text/javascript" src='./controllers/timesheetsController.js'></script>
+  <script type="text/javascript" src='./controllers/newTimesheetController.js'></script>
 
   <link rel="stylesheet" type="text/css" href="./css/myStyles.css">
 
 </head>
 <body>
   <div ng-app='timeStomp'>
-<!-- 
-    <nav class='navbar navbar-default'>
-      <div class='container-fluid'>
-        <div class="navbar-header">
-          <a href='#' class='navbar-brand'>Time Stomp</a>
-        </div>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href='#' ng-click="">New Timesheet</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Home</a></li>
-              <li><a href='#/timesheets'>Timesheets</a></li>
-              <li><a href="#/options">Options</a></li>
-            </ul>
-          </li>
-        </ul>
-
-      </div>
-    </nav> 
- -->
 
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -74,10 +53,9 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href='#' ng-click="">New Timesheet</a></li>
+            <li><a href='#/newtimesheet'>New Timesheet</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Home</a></li>
-            <li><a href='#/timesheets'>Timesheets</a></li>
+            <li><a href='#/timesheets'>All Timesheets</a></li>
             <li><a href="#/options">Options</a></li>
           </ul>
         </div>
