@@ -7,6 +7,7 @@ var Timesheet = function (input) {
     this.startTime = 0;
     this.currentTime = 0;
     this.createdAt = JSON.parse(JSON.stringify(new Date));
+    this.createdTime = Date.now();
   } else if (typeof input === typeof {}) {
     for (var key in input) {
       this[key] = input[key];
