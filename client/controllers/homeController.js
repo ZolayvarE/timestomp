@@ -85,7 +85,7 @@ app.controller('Home', function ($scope, $state) {
 
     var textToCopy = $scope.currentSheet.stamps
       .map(function (item) {
-        return convert(item.time) + ' - ' + item.text;
+        return $scope.convert(item.time) + ' - ' + item.text;
       })
       .join('\n'); 
 
