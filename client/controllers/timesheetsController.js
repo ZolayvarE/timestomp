@@ -14,7 +14,11 @@ app.controller('Timesheets', function ($scope, $state) {
       }
     }
 
-    return $scope.allSheets;
+    if ($scope.allSheets.length) {
+      return $scope.allSheets;
+    } else {
+      $state.go('New Timesheet');
+    }
   };
 
   $scope.deleteSheet = function (title) {
