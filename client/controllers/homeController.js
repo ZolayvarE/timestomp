@@ -14,6 +14,7 @@ app.controller('Home', function ($scope, $state) {
     setTimeout($scope.updateTime, 0);
     $scope.tick = setInterval($scope.updateTime, 1000);
     $scope.currentSheet.save();
+    document.querySelector('input').select();
   };
 
   $scope.stopTimer = function () {
@@ -93,7 +94,7 @@ app.controller('Home', function ($scope, $state) {
 
   $scope.convertToSeconds = convertToSeconds;
 
-  $scope.convert = convertToFrames;
+  $scope.convert = convertToSeconds;
 
   if (localStorage.currentSheet && localStorage.currentSheet !== 'undefined') {
     $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));    
