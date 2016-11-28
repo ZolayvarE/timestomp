@@ -9,7 +9,7 @@ app.controller('Timesheets', function ($scope, $state) {
     $scope.allSheets = [];
 
     for (var key in localStorage) {
-      if (key !== 'currentSheet' && key !== 'version' && key !== 'length') {
+      if (key !== 'currentSheet' && key !== 'version' && key !== 'defaultConversion' && key !== 'length') {
         $scope.allSheets.push(new Timesheet(JSON.parse(localStorage[key])));
       }
     }
@@ -37,7 +37,7 @@ app.controller('Timesheets', function ($scope, $state) {
       var found = false;
 
       for (var key in localStorage) {
-        if (key !== 'currentSheet' && key !== 'version' && key !== 'length' && localStorage[key] !== 'undefined') {
+        if (key !== 'currentSheet' && key !== 'version' && key !== 'defaultConversion' && key !== 'length' && localStorage[key] !== 'undefined') {
           found = true;
           localStorage.currentSheet = localStorage[key];
           break;

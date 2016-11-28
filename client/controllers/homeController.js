@@ -94,7 +94,7 @@ app.controller('Home', function ($scope, $state) {
 
   $scope.convertToSeconds = convertToSeconds;
 
-  $scope.convert = convertToSeconds;
+  $scope.convert = window[localStorage.defaultConversion];
 
   if (localStorage.currentSheet && localStorage.currentSheet !== 'undefined') {
     $scope.currentSheet = new Timesheet(JSON.parse(localStorage.currentSheet));    

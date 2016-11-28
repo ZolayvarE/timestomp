@@ -5,6 +5,10 @@ if (localStorage.version !== version) {
   localStorage.version = version;
 }
 
+if (localStorage.defaultConversion !== 'convertToSeconds' && localStorage.defaultConversion !== 'convertToFrames') {
+  localStorage.defaultConversion = 'convertToSeconds';
+}
+
 var app = angular.module('timeStomp', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -21,6 +25,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('New Timesheet', {
       url: '/newtimesheet',
       templateUrl: '/views/newTimesheet.html'
+    }).state('Options', {
+      url: '/options',
+      templateUrl: '/views/options.html'
     });
 
   $urlRouterProvider.otherwise('/timesheets');
