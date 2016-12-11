@@ -18,9 +18,13 @@ app.controller('Home', function ($scope, $state) {
   };
 
   $scope.stopTimer = function () {
-    $scope.currentSheet.status = 'complete';
-    clearInterval($scope.tick);
-    $scope.currentSheet.save();
+    var confirmation = true;
+    confirmation = confirm('Are you sure are done adding timestamps?');
+    if (confirmation) {
+      $scope.currentSheet.status = 'complete';
+      clearInterval($scope.tick);
+      $scope.currentSheet.save();
+    }
   };
 
   $scope.addTimeStamp = function () {
